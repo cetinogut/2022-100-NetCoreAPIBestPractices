@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="11.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NetCoreAPIBestPractices.Data.Models\NetCoreAPIBestPractices.Data.Models.csproj" />
+    <ProjectReference Include="..\NetCoreAPIBestPractices.Models\NetCoreAPIBestPractices.Models.csproj" />
+  </ItemGroup>
+
+</Project>
