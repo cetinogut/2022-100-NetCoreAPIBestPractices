@@ -11,6 +11,7 @@ namespace NetCoreAPIBestPractices.Validations
     {
         public ContactValidator()
         {
+            RuleFor(i => i.FullName).NotEmpty().WithMessage("full name cannot be empty");
             RuleFor(x => x.Id).LessThan(100).WithMessage("Id cannot be greater than 100");
         }
     }

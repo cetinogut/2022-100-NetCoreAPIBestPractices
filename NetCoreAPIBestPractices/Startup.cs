@@ -34,17 +34,24 @@ namespace NetCoreAPIBestPractices
         {
 
             services.AddControllers()
-                .AddFluentValidation(i => i.DisableDataAnnotationsValidation = true);
+                .AddFluentValidation(i => i.DisableDataAnnotationsValidation = true);// use FlentValidation first
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "NetCoreAPIBestPractices", Version = "v1" });
             });
 
             services.AddHealthChecks(); // from my own extensions
-            services.ConfigureMapping(); // from my own extensions
+            services.ConfigureDasMapping(); // from my own extensions
 
-            services.AddScoped<IContactService, ContactService>();
-            services.AddTransient<IValidator<ContactDVO>, ContactValidator>();
+            services.AddScoped<IContactService, ContactService>(); //when ever I call this service(interface) give me a class instance of ContactService
+            services.AddTransient<IValidator<ContactDVO>, ContactValidator>(); // added for fluent validation
+
+            services.AddHttpClient("garantiapi", config =>
+            {
+                config.BaseAddress = new Uri("https://www.garanti.com");
+                config.DefaultRequestHeaders.Add("Authorization", "Bearer 1234567");
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -59,7 +66,7 @@ namespace NetCoreAPIBestPractices
 
 
             app.UseCustomHealthCheck();
-
+            app.UseResponseCaching();
 
             app.UseHttpsRedirection();
 

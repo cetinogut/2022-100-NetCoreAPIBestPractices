@@ -29,6 +29,7 @@ namespace NetCoreAPIBestPractices.Controllers
             return _configuration["EMAIL_ADDRESS"].ToString();
         }
 
+        [ResponseCache(Duration =20)] // keep the id and its info in the cache for 10 secs
         [HttpGet("{id}")]
         public ContactDVO GetContactById(int id)
         {

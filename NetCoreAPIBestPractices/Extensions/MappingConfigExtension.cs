@@ -11,7 +11,7 @@ namespace NetCoreAPIBestPractices.Extensions
 {
     public static class MappingConfigExtension
     {
-        public static IServiceCollection ConfigureMapping(this IServiceCollection service)
+        public static IServiceCollection ConfigureDasMapping(this IServiceCollection service)
         {
             var mappingConfig = new MapperConfiguration(i => i.AddProfile(new AutoMapperMappingProfile()));
 

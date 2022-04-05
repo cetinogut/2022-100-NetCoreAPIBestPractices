@@ -2,20 +2,24 @@
 using NetCoreAPIBestPractices.Data.Models;
 using NetCoreAPIBestPractices.Models;
 using System;
+using System.Net.Http;
 
 namespace NetCoreAPIBestPractices.Service
 {
     public class ContactService : IContactService
     {
         private readonly IMapper _mapper;
+        private readonly IHttpClientFactory _httpClientFactory;
 
-        public ContactService(IMapper mapper)
+        public ContactService(IMapper mapper, IHttpClientFactory httpClientFactory)
         {
             _mapper = mapper;
+            _httpClientFactory = httpClientFactory;
         }
         public ContactDVO GetContactById(int Id)
         {
             Contact dbContact = getDummyContact();
+            var client= _httpClientFactory.CreateClient("garanti.api");
 
 
             //return new ContactDVO()  //without automapper
